@@ -3,81 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard</title>
-  <link rel="stylesheet" href="css/styles.css" />
 
   <style>
-    /* Common Pay button styles */
-    #payBtn {
-      padding: 10px 20px;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .dashboard {
+      max-width: 500px;
+      margin: 100px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
-      display: none;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 10px;
     }
 
+    #payBtn {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    #logoutBtn {
+      background-color: #6b7280;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
   </style>
-
-  <!-- Define ABTestReady before loading ab.js -->
-<script>
-  window.ABTestReady = function (variant, config) {
-    const el = document.querySelector(config.selector);
-    if (!el) {
-      console.warn("[A/B Test] Element not found for selector:", config.selector);
-      return;
-    }
-
-    // Reset previously set styles
-    el.style.backgroundColor = '';
-    el.style.color = '';
-    el.style.display = 'inline-block';
-
-    // Apply styles based on variant
-    if (variant === 'A') {
-      el.style.backgroundColor = 'green';
-      el.style.color = 'white';
-    } else {
-      el.style.backgroundColor = 'red';
-      el.style.color = 'white';
-    }
-  };
-
-</script>
-<script>
-  (function() {
-    var script = document.createElement('script');
-    script.src = "https://abtesting-frontend-madhavans-projects-3955d847.vercel.app/ab.js?test_id=13";
-    script.async = true;
-    document.head.appendChild(script);
-  })();
-</script>
 </head>
+
 <body>
   <div class="dashboard">
-    <h2>Welcome, <span id="user"></span>!</h2>
+    <h2>Welcome!</h2>
 
-    <!-- One single pay button -->
     <button id="payBtn">Pay</button>
     <button id="logoutBtn">Logout</button>
   </div>
 
   <script>
-    // ✅ Login check
-    const username = localStorage.getItem('username');
-    if (!username) {
-      alert('Please login first.');
-      window.location.href = 'index.html';
-    } else {
-      document.getElementById('user').innerText = username;
-    }
-
-    // ✅ Pay button click = triggers goal page (ab.js already tracks goal view)
-    document.getElementById('payBtn').addEventListener('click', () => {
-      window.location.href = 'payment-success.html';
+    document.getElementById("payBtn").addEventListener("click", () => {
+      alert("Pay button clicked");
+      // window.location.href = "payment.html";
     });
 
-    // ✅ Logout
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem('username');
-      window.location.href = 'index.html';
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      alert("Logged out");
+      // window.location.href = "index.html";
     });
   </script>
 </body>
